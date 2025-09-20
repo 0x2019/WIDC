@@ -68,9 +68,14 @@ begin
       Result := Format(' (%d개월 %d일 %d시간 %d분 %d초 경과)',
         [Months, Days, Hours, Minutes, Seconds])
     // 그 외에는 일, 시, 분, 초만 표시
-    else
+    else if Days > 0 then
       Result := Format(' (%d일 %d시간 %d분 %d초 경과)',
-        [Days, Hours, Minutes, Seconds]);
+        [Days, Hours, Minutes, Seconds])
+    else if Hours > 0 then
+      Result := Format(' (%d시간 %d분 %d초 경과)',
+        [Hours, Minutes, Seconds])
+    else
+      Result := Format(' (%d분 %d초 경과)', [Minutes, Seconds]);
   end
   else
   begin
@@ -80,9 +85,13 @@ begin
     else if Months > 0 then
       Result := Format(' (%dmo %dd %dh %dm %ds elapsed)',
         [Months, Days, Hours, Minutes, Seconds])
-    else
+    else if Days > 0 then
       Result := Format(' (%dd %dh %dm %ds elapsed)',
-        [Days, Hours, Minutes, Seconds]);
+        [Days, Hours, Minutes, Seconds])
+    else if Hours > 0 then
+      Result := Format(' (%dh %dm %ds elapsed)', [Hours, Minutes, Seconds])
+    else
+      Result := Format(' (%dm %ds elapsed)', [Minutes, Seconds]);
   end;
 end;
 
