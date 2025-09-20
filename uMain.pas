@@ -11,8 +11,9 @@ uses
 const
   mbMessage = WM_USER + 1024;
   APP_NAME    = 'WIDC';
-  APP_VERSION = 'v1.0.0.0';
-  APP_RELEASE = 'September 18, 2025';
+  APP_VERSION = 'v1.0.0.1';
+  APP_RELEASE = 'September 20, 2025';
+  APP_URL     = 'https://github.com/0x2019/WIDC';
 
 type
   TfrmMain = class(TForm)
@@ -129,7 +130,7 @@ begin
   APP_NAME + ' ' + APP_VERSION + sLineBreak +
   'c0ded by 龍, written in Delphi.' + sLineBreak + sLineBreak +
   'Release Date: ' + APP_RELEASE + sLineBreak +
-  'URL: https://github.com/0x2019/WIDC', xMsgCaption, MB_ICONQUESTION);
+  'URL: ' + APP_URL, xMsgCaption, MB_ICONQUESTION);
 end;
 
 procedure TfrmMain.btnExitClick(Sender: TObject);

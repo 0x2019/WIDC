@@ -121,9 +121,10 @@
         <DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
         <DCC_ImportedDataReferences>false</DCC_ImportedDataReferences>
         <AppExecutionLevel>requireAdministrator</AppExecutionLevel>
-        <VerInfo_Keys>CompanyName=;FileDescription=Windows Install Date Checker;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=;ProductName=Windows Install Date Checker;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=Windows Install Date Checker;FileVersion=1.0.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=;ProductName=Windows Install Date Checker;ProductVersion=1.0.0.1;Comments=</VerInfo_Keys>
         <Icon_MainIcon>WIDC_Icon.ico</Icon_MainIcon>
         <AppEnableRuntimeThemes>false</AppEnableRuntimeThemes>
+        <VerInfo_Build>1</VerInfo_Build>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -164,18 +165,6 @@
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="WIDC.exe" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>WIDC.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="WIDC.exe" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>WIDC.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win32\Debug\WIDC.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>WIDC.exe</RemoteName>
                         <Overwrite>true</Overwrite>
