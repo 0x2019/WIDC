@@ -140,7 +140,7 @@ end;
 
 procedure TfrmMain.tmrRefreshTimer(Sender: TObject);
 begin
-  lblIDRW.Caption := DateTimeToStr(xInstallDate) + GetInstallDateR(xInstallDate);
+  lblIDRW.Caption := GetInstallDateR(xInstallDate);
   lblSUW.Caption := DateTimeToStr(xSystemUptime) + GetSystemUptimeR;
 end;
 

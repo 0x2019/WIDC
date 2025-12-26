@@ -110,8 +110,11 @@ begin
       if xReg.OpenKeyReadOnly(xRegPath) and xReg.ValueExists('InstallDate') then
       begin
         UnixTime := Cardinal(xReg.ReadInteger('InstallDate'));  // 설치 날짜 (Unix 타임스탬프)
-        Result := UnixToDateTime(UnixTime, True);               // Unix 타임스탬프를 TDateTime으로 변환
-        Result := TTimeZone.Local.ToLocalTime(Result);          // 로컬 시간대로 변환
+        if UnixTime > 0 then
+        begin
+          Result := UnixToDateTime(UnixTime, True);               // Unix 타임스탬프를 TDateTime으로 변환
+          Result := TTimeZone.Local.ToLocalTime(Result);          // 로컬 시간대로 변환
+        end;
       end;
     except
     end;
@@ -121,8 +124,17 @@ begin
 end;
 
 function GetInstallDateR(const InstallDate: TDateTime): string;
+var
+  lang: string;
 begin
-  Result := GetElapsedTime(InstallDate);
+  if (InstallDate > 0) and (InstallDate <= Now) then
+    Exit(DateTimeToStr(InstallDate) + GetElapsedTime(InstallDate));
+
+  lang := GetSystemUILanguage;
+  if SameText(lang, 'ko-kr') then
+    Result := '알 수 없음'
+  else
+    Result := 'Unknown';
 end;
 
 function GetSystemUptime: Double;
