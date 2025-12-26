@@ -84,6 +84,9 @@ begin
   xInstallDate := GetInstallDate;
   xSystemUptime := GetSystemUptimeLocal;
 
+  Constraints.MinWidth := Width;
+  Constraints.MinHeight := Height;
+
   tmrRefresh.Enabled := True;
   tmrRefreshTimer(tmrRefresh);
 end;
