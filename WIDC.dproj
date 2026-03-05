@@ -1,4 +1,4 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{6406ECC2-00B2-4F15-AF2E-200F9625567A}</ProjectGuid>
         <ProjectVersion>20.1</ProjectVersion>
@@ -125,6 +125,7 @@
         <Icon_MainIcon>WIDC_Icon.ico</Icon_MainIcon>
         <AppEnableRuntimeThemes>false</AppEnableRuntimeThemes>
         <VerInfo_Build>2</VerInfo_Build>
+        <DCC_UnitSearchPath>..\Common;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -137,7 +138,12 @@
             <Form>frmMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uExt.pas"/>
+        <DCCReference Include="uAppController.pas"/>
+        <DCCReference Include="uAppStrings.pas"/>
+        <DCCReference Include="uInstallDate.pas"/>
+        <DCCReference Include="..\Common\uForms.pas"/>
+        <DCCReference Include="..\Common\uMenu.Popup.pas"/>
+        <DCCReference Include="..\Common\uMessageBox.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -158,6 +164,12 @@
                 <Source>
                     <Source Name="MainSource">WIDC.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k290.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp290.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="WIDC.exe" Configuration="Release" Class="ProjectOutput">

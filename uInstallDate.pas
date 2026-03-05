@@ -1,4 +1,4 @@
-﻿unit uExt;
+﻿unit uInstallDate;
 
 interface
 
@@ -97,29 +97,33 @@ end;
 
 function GetInstallDate: TDateTime;
 const
-  xRegPath = 'Software\Microsoft\Windows NT\CurrentVersion';
+  ROOT = HKEY_LOCAL_MACHINE;
+  PATH = 'SOFTWARE\Microsoft\Windows NT\CurrentVersion';
+  VALUE = 'InstallDate';
 var
-  xReg: TRegistry;
+  Reg: TRegistry;
   UnixTime: Cardinal;
 begin
   Result := 0;
-  xReg := TRegistry.Create(KEY_READ or KEY_WOW64_64KEY);
+  Reg := TRegistry.Create(KEY_READ or KEY_WOW64_64KEY);
   try
+    Reg.RootKey := ROOT;
+    if Reg.OpenKeyReadOnly(PATH) then
     try
-      xReg.RootKey := HKEY_LOCAL_MACHINE;
-      if xReg.OpenKeyReadOnly(xRegPath) and xReg.ValueExists('InstallDate') then
+      if Reg.ValueExists(VALUE) then
       begin
-        UnixTime := Cardinal(xReg.ReadInteger('InstallDate'));  // 설치 날짜 (Unix 타임스탬프)
+        UnixTime := Cardinal(Reg.ReadInteger(VALUE));
         if UnixTime > 0 then
         begin
-          Result := UnixToDateTime(UnixTime, True);               // Unix 타임스탬프를 TDateTime으로 변환
-          Result := TTimeZone.Local.ToLocalTime(Result);          // 로컬 시간대로 변환
+          Result := UnixToDateTime(UnixTime, True);
+          Result := TTimeZone.Local.ToLocalTime(Result);
         end;
       end;
-    except
+    finally
+      Reg.CloseKey;
     end;
   finally
-    xReg.Free;
+    Reg.Free;
   end;
 end;
 
